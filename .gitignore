@@ -5,7 +5,6 @@ dist/
 
 # macOS
 .DS_Store
-
 # Xcode user state & build artifacts (do not commit)
 xcuserdata/
 *.xcuserstate
