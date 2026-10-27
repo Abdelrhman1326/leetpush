@@ -77,3 +77,23 @@ content script and the GitHub API calls can run.
   **Always Allow** permission for leetcode.com in Safari's extension settings.
 - **Xcode shows a red `dist` folder reference** — that is the built popup; run
   the popup build from step 1.
+
+### 5. Configure Code Signing & Permanent Installation
+
+To prevent Safari from unloading the extension or requiring you to re-enable unsigned extensions on every reboot, sign the app locally and place it in `/Applications`:
+
+1. Open `LeetPushSafari.xcodeproj` in Xcode.
+2. Select the root **LeetPushSafari** project node in the left sidebar.
+3. Under **TARGETS**, select **LeetPushSafari** (parent app):
+   - Go to **Signing & Capabilities**.
+   - Check **Automatically manage signing**.
+   - Under **Team**, select your **Personal Team** (sign in via **Xcode → Settings → Accounts** if empty).
+4. Under **TARGETS**, select **LeetPushSafari Extension**:
+   - Go to **Signing & Capabilities**.
+   - Check **Automatically manage signing**.
+   - Set **Team** to the **exact same Personal Team**.
+   - Ensure its Bundle Identifier is nested under the parent app (e.g., `com.domain.LeetPushSafari.Extension`).
+5. Press `⌘B` to build the project.
+6. In Xcode's left sidebar navigator, right-click `LeetPushSafari.app` under **Products** → **Show in Finder**.
+7. Drag `LeetPushSafari.app` into `/Applications`.
+8. Double-click `LeetPushSafari.app` from `/Applications` once to register it with macOS Launch Services.
