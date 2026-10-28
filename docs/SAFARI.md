@@ -57,7 +57,7 @@ app:
    code. (On Safari 16 and earlier, this option is under **Develop → Allow
    Unsigned Extensions** instead.)
 
-> ⚠️ This permission is reset every time Safari quits. You must re-enable
+> This permission is reset every time Safari quits. You must re-enable
 > **Allow unsigned extensions** after fully quitting and reopening Safari during
 > development, otherwise the extension will not appear.
 
@@ -102,7 +102,7 @@ To prevent Safari from unloading the extension or requiring you to re-enable uns
    - Set **Team** to the **exact same Personal Team**.
    - Ensure its Bundle Identifier is nested under the parent app (e.g., `com.domain.LeetPushSafari.Extension`).
 
-   > ⚠️ If you change the extension's Bundle Identifier, also update
+   > If you change the extension's Bundle Identifier, also update
    > `extensionBundleIdentifier` at the top of
    > `LeetPushSafari/LeetPushSafari/ViewController.swift` to the same value. The
    > launcher uses it to check the extension's status and open its settings; a
