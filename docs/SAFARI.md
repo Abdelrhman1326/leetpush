@@ -19,9 +19,14 @@ Safari Version/LeetPushSafari/
 
 ## Prerequisites
 
-- macOS with [Xcode](https://apps.apple.com/app/xcode/id497799835) installed
+- macOS 13 (Ventura) or later
+- [Xcode](https://apps.apple.com/app/xcode/id497799835) installed
 - Node.js (or [Bun](https://bun.sh) — the repo ships a `bun.lock`) to build the
   extension popup
+
+> The Xcode project sets `MACOSX_DEPLOYMENT_TARGET = 13.0` for both the launcher
+> app and the Safari extension, so the minimum supported macOS version is 13.0.
+> Keep these two targets aligned if you change it.
 
 ## Steps
 
@@ -47,11 +52,14 @@ app:
 
 1. Open Safari → **Settings → Advanced** and enable **Show features for web
    developers** (this reveals the Develop menu).
-2. Go to **Develop → Allow Unsigned Extensions** and confirm. Safari may ask
-   for your password or an iCloud code.
+2. Go to **Safari → Settings → Developer** and enable **Allow unsigned
+   extensions**, then confirm. Safari may ask for your password or an iCloud
+   code. (On Safari 16 and earlier, this option is under **Develop → Allow
+   Unsigned Extensions** instead.)
 
-> ⚠️ Safari re-checks this permission and you may need to re-allow unsigned
-> extensions after a Safari restart or roughly once a week during development.
+> ⚠️ This permission is reset every time Safari quits. You must re-enable
+> **Allow unsigned extensions** after fully quitting and reopening Safari during
+> development, otherwise the extension will not appear.
 
 ### 3. Run the app
 
@@ -93,6 +101,14 @@ To prevent Safari from unloading the extension or requiring you to re-enable uns
    - Check **Automatically manage signing**.
    - Set **Team** to the **exact same Personal Team**.
    - Ensure its Bundle Identifier is nested under the parent app (e.g., `com.domain.LeetPushSafari.Extension`).
+
+   > ⚠️ If you change the extension's Bundle Identifier, also update
+   > `extensionBundleIdentifier` at the top of
+   > `LeetPushSafari/LeetPushSafari/ViewController.swift` to the same value. The
+   > launcher uses it to check the extension's status and open its settings; a
+   > mismatch leaves the status incorrect and the settings button targeting the
+   > wrong extension.
+
 5. Press `⌘B` to build the project.
 6. In Xcode's left sidebar navigator, right-click `LeetPushSafari.app` under **Products** → **Show in Finder**.
 7. Drag `LeetPushSafari.app` into `/Applications`.
