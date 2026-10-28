@@ -19,13 +19,22 @@ Safari Version/LeetPushSafari/
 
 ## Prerequisites
 
-- macOS 13 (Ventura) or later
-- [Xcode](https://apps.apple.com/app/xcode/id497799835) installed
+Building the project requires:
+
+- macOS 14.5 (Sonoma) or later, the minimum macOS version to run [Xcode 16](https://apps.apple.com/app/xcode/id497799835)
+- Xcode 16 or later — the project uses synchronized (buildable) folders,
+  which were introduced in Xcode 16; earlier releases (Xcode 15.x, the last
+  version supporting macOS 13) cannot open this project
 - Node.js (or [Bun](https://bun.sh) — the repo ships a `bun.lock`) to build the
   extension popup
 
+> **Note:** macOS 13 (Ventura) is *not* sufficient to build the project. The
+> minimum deployment target is covered separately below.
+
 > The Xcode project sets `MACOSX_DEPLOYMENT_TARGET = 13.0` for both the launcher
-> app and the Safari extension, so the minimum supported macOS version is 13.0.
+> app and the Safari extension, so the **built app's minimum supported macOS
+> version is 13.0 (Ventura)**. This is separate from the macOS version needed
+> to *build* the project (macOS 14.5+ with Xcode 16, as listed above).
 > Keep these two targets aligned if you change it.
 
 ## Steps
